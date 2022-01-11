@@ -16,3 +16,29 @@ export const fetchCategories = () => {
     return data.categories.map((category) => category.slug);
   });
 };
+
+export const fetchReviews = (category, title) => {
+  if (category === "all-categories") {
+    return myApi.get("/reviews").then(({ data }) => {
+      return title === "all-reviews"
+        ? data.reviews
+        : data.reviews.filter((review) => {
+            return review.title.toLowerCase().includes(title.toLowerCase());
+          });
+    });
+  } else {
+    return myApi.get(`/reviews?category=${category}`).then(({ data }) => {
+      return title === "all-reviews"
+        ? data.reviews
+        : data.reviews.filter((review) => {
+            return review.title.toLowerCase().includes(title.toLowerCase());
+          });
+    });
+  }
+};
+
+export const fetchUser = (username) => {
+  return myApi.get(`/users/${username}`).then(({ data }) => {
+    console.log(data.user);
+  });
+};

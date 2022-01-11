@@ -8,23 +8,34 @@ import LogIn from "./components/route.LogIn/LogIn";
 import Register from "./components/route.Register/Register";
 import Dashboard from "./components/route.Dashboard/Dashboard";
 import About from "./components/route.About/About";
+import ReviewsResults from "./components/route.ReviewsResults/ReviewsResults";
+import { QueryProvider } from "./contexts/QueryContext.js";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
+    <QueryProvider>
+      <UserProvider>
         <div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard:username" element={<Dashboard />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
+          <BrowserRouter>
+            <div>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<LogIn />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/dashboard/:username" element={<Dashboard />} />
+                <Route path="/about" element={<About />} />
+                <Route
+                  path="/reviews/:category/:title"
+                  element={<ReviewsResults />}
+                />
+              </Routes>
+            </div>
+            <Footer />
+          </BrowserRouter>
         </div>
-        <Footer />
-      </BrowserRouter>
-    </div>
+      </UserProvider>
+    </QueryProvider>
   );
 }
 
