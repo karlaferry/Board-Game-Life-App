@@ -9,6 +9,7 @@ export default function Header() {
         <Link to="/about">About</Link> | <Link to="/login">Login</Link> |{" "}
         <Link to="/register">Register</Link>
       </p>
+      <h1>Board Game Life</h1>
     </div>
   );
 }

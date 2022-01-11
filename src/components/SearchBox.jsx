@@ -1,10 +1,16 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchCategories } from "../utils/api";
 import { capitaliseString } from "../utils/utilFuncs";
+import { QueryContext } from "../contexts/QueryContext";
 
 export default function SearchBox() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { query, setQuery } = useContext(QueryContext);
+
+  let navigate = useNavigate();
+
   useEffect(() => {
     setIsLoading(true);
     fetchCategories().then((res) => {
@@ -12,12 +18,32 @@ export default function SearchBox() {
       setIsLoading(false);
     });
   }, []);
+
+  const handleCategory = (event) => {
+    const category = event.target.value;
+    setQuery((currentQuery) => {
+      return { ...currentQuery, category: category };
+    });
+  };
+
+  const handleTitle = (event) => {
+    const title = event.target.value;
+    setQuery((currentQuery) => {
+      return { ...currentQuery, title: title };
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/reviews/${query.category}/${query.title}`);
+  };
+
   return (
     <div>
       <h2>Search</h2>
       {!isLoading && (
-        <form>
-          <select name="categories">
+        <form onSubmit={handleSubmit}>
+          <select name="categories" onChange={handleCategory}>
             <option value="All" defaultValue>
               All
             </option>
@@ -29,7 +55,11 @@ export default function SearchBox() {
               );
             })}
           </select>
-          <input type="text" placeholder="Browse" />
+          <input
+            type="text"
+            placeholder="Review Title"
+            onChange={handleTitle}
+          />
           <button>🔍</button>
         </form>
       )}
