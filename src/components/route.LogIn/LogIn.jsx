@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../Header";
 
-export default function Dashboard() {
+export default function LogIn() {
   return (
     <div>
       <Header />
-      <p>This is the dashboard.</p>
+      <p>LogIn Form</p>
     </div>
   );
 }
