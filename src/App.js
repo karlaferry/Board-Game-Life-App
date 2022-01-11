@@ -7,6 +7,7 @@ import Home from "./components/route.Home/Home";
 import LogIn from "./components/route.LogIn/LogIn";
 import Register from "./components/route.Register/Register";
 import Dashboard from "./components/route.Dashboard/Dashboard";
+import About from "./components/route.About/About";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard:username" element={<Dashboard />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
         <Footer />
