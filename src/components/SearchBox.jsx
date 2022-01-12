@@ -47,7 +47,7 @@ export default function SearchBox() {
             : criteria === "votes-h-l"
             ? { sort_by: "votes", order: "desc" }
             : criteria === "votes-l-h"
-            ? { sort_by: "votes", order: "desc" }
+            ? { sort_by: "votes", order: "asc" }
             : criteria === "comment-l-h"
             ? { sort_by: "comment_count", order: "asc" }
             : criteria === "comment-h-l"

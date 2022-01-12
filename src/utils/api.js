@@ -1,6 +1,5 @@
 // API REQUESTS HERE
 import axios from "axios";
-import { sortTitle, sortComments, sortVotes } from "./utilFuncs";
 
 const myApi = axios.create({
   baseURL: "https://gamersofthenorth.herokuapp.com/api",
@@ -50,6 +49,13 @@ export const fetchUser = (username) => {
 
 export const fetchReview = (id) => {
   return myApi.get(`/reviews/${id}`).then(({ data }) => {
+    data.review.created_at = data.review.created_at.substring(0, 10);
     return data.review;
+  });
+};
+
+export const patchVote = (id) => {
+  return myApi.patch(`/reviews/${id}`, { inc_votes: 1 }).then((res) => {
+    return res.data;
   });
 };

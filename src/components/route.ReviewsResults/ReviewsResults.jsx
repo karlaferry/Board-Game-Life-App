@@ -11,9 +11,8 @@ import SearchBox from "../SearchBox";
 import ReviewCard from "./ReviewCard";
 
 export default function ReviewsResults() {
-  // const { category, title } = useParams();
   const [displayedReviews, setDisplayedReviews] = useState([]);
-  const { query, setQuery, setNewQuery } = useContext(QueryContext);
+  const { query } = useContext(QueryContext);
   useEffect(() => {
     fetchReviews(query).then((res) => {
       setDisplayedReviews(res);
