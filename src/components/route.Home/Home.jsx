@@ -22,6 +22,7 @@ export default function Home() {
       <Link to="/about">
         <button>About Us</button>
       </Link>
+      <h2>Search</h2>
       <SearchBox />
       <h2>Top Voted Reviews</h2>
       {isLoading ? (
