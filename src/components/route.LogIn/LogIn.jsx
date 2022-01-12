@@ -6,9 +6,8 @@ import { fetchUser } from "../../utils/api";
 
 export default function LogIn() {
   const [isError, setIsError] = useState(false);
-  const { username, setUsername, currentUser, setCurrentUser } =
-    useContext(UserContext);
-  let navigate = useNavigate();
+  const { username, setUsername, setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const handleUserInput = (event) => {
     const username = event.target.value;
     setUsername(username);
@@ -42,7 +41,7 @@ export default function LogIn() {
       </form>
       {isError && (
         <p>
-          User does not exist. <Link to="/register">Register instead.</Link>
+          User does not exist. <Link to="/register">Register instead</Link>.
         </p>
       )}
     </div>

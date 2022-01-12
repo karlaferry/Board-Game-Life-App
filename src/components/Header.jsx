@@ -4,13 +4,12 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Header() {
   const {
-    currentUser: { username, avatar_url, name },
+    currentUser: { username },
     setCurrentUser,
     setUsername,
   } = useContext(UserContext);
   const navigate = useNavigate();
-  const handleLogout = (event) => {
-    event.preventDefault();
+  const handleLogout = () => {
     alert("You've been logged out.");
     setUsername("");
     setCurrentUser({});
