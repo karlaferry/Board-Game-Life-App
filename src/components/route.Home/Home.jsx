@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SearchBox from "../SearchBox";
 import Header from "../Header";
 import { fetchTopReviews } from "../../utils/api";
-// import mainimg from "../../img/bg-main.jpeg";
 
 export default function Home() {
   const [topReviews, setTopReviews] = useState([]);
@@ -15,8 +14,6 @@ export default function Home() {
       setTopReviews(res);
     });
   }, []);
-  // Call API: Fetch top 5 reviews
-  // Store in state - [topReviews, setTopReviews]
   return (
     <div>
       <Header />

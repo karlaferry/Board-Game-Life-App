@@ -41,7 +41,9 @@ export default function SearchBox() {
   return (
     <div>
       <h2>Search</h2>
-      {!isLoading && (
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
         <form onSubmit={handleSubmit}>
           <select name="categories" onChange={handleCategory}>
             <option value="All" defaultValue>

@@ -27,7 +27,7 @@ export default function ReviewsResults() {
       ) : (
         <ul>
           {displayedReviews.map((review) => (
-            <li>{review.title}</li>
+            <li key={review.review_id}>{review.title}</li>
           ))}
         </ul>
       )}

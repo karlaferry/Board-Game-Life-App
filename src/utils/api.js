@@ -39,6 +39,6 @@ export const fetchReviews = (category, title) => {
 
 export const fetchUser = (username) => {
   return myApi.get(`/users/${username}`).then(({ data }) => {
-    console.log(data.user);
+    return data.user;
   });
 };
