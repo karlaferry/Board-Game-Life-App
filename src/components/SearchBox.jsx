@@ -12,7 +12,7 @@ export default function SearchBox() {
     title: "",
     criteria: { sort_by: "title", order: "asc" },
   });
-  const { query, setQuery } = useContext(QueryContext);
+  const { setQuery } = useContext(QueryContext);
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
@@ -31,68 +31,34 @@ export default function SearchBox() {
 
   const handleTitle = (event) => {
     const title = event.target.value;
-    if (title === "") {
-      setNewQuery((currentQuery) => {
-        return { ...currentQuery, title: "all-reviews" };
-      });
-    } else {
-      setNewQuery((currentQuery) => {
-        return { ...currentQuery, title: title };
-      });
-    }
+    setNewQuery((currentQuery) => {
+      return { ...currentQuery, title: title === "" ? "all-reviews" : title };
+    });
   };
+
   const handleCriteria = (event) => {
     const criteria = event.target.value;
-    if (criteria === "title") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "title", order: "asc" },
-        };
-      });
-    } else if (criteria === "votes-h-l") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "votes", order: "desc" },
-        };
-      });
-    } else if (criteria === "votes-l-h") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "votes", order: "asc" },
-        };
-      });
-    } else if (criteria === "comments-h-l") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "comment_count", order: "desc" },
-        };
-      });
-    } else if (criteria === "comments-l-h") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "comment_count", order: "asc" },
-        };
-      });
-    } else if (criteria === "newest") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "created_at", order: "desc" },
-        };
-      });
-    } else if (criteria === "oldest") {
-      setNewQuery((currentQuery) => {
-        return {
-          ...currentQuery,
-          criteria: { sort_by: "created_at", order: "asc" },
-        };
-      });
-    }
+    setNewQuery((currentQuery) => {
+      return {
+        ...currentQuery,
+        criteria:
+          criteria === "title"
+            ? { sort_by: "title", order: "asc" }
+            : criteria === "votes-h-l"
+            ? { sort_by: "votes", order: "desc" }
+            : criteria === "votes-l-h"
+            ? { sort_by: "votes", order: "desc" }
+            : criteria === "comment-l-h"
+            ? { sort_by: "comment_count", order: "asc" }
+            : criteria === "comment-h-l"
+            ? { sort_by: "comment_count", order: "desc" }
+            : criteria === "newest"
+            ? { sort_by: "created_at", order: "desc" }
+            : criteria === "oldest"
+            ? { sort_by: "created_at", order: "asc" }
+            : null,
+      };
+    });
   };
 
   const handleSubmit = (event) => {
