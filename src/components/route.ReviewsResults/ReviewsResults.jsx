@@ -19,9 +19,7 @@ export default function ReviewsResults() {
     <div>
       <Header />
       <SearchBox />
-      <h2>
-        {capitaliseString(category)} - {capitaliseString(title)}
-      </h2>
+      <h2>{capitaliseString(category)}</h2>
       {displayedReviews.length <= 0 ? (
         <p>No results.</p>
       ) : (
