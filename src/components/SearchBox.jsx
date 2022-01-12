@@ -52,6 +52,10 @@ export default function SearchBox() {
             ? { sort_by: "created_at", order: "desc" }
             : criteria === "oldest"
             ? { sort_by: "created_at", order: "asc" }
+            : criteria === "comments-h-l"
+            ? { sort_by: "comment_count", order: "desc" }
+            : criteria === "comments-l-h"
+            ? { sort_by: "comment_count", order: "asc" }
             : null,
       };
     });
@@ -92,10 +96,12 @@ export default function SearchBox() {
           />
           <select name="criteria" onChange={handleCriteria}>
             <option value="title" defaultValue>
-              Alphabetical
+              By Title
             </option>
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
+            <option value="comments-h-l">Comments: High to Low</option>
+            <option value="comments-l-h">Comments: Low to High</option>
             <option value="votes-h-l">Votes: High to Low</option>
             <option value="votes-l-h">Votes: Low to High</option>
           </select>
