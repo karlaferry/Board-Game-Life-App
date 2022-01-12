@@ -31,7 +31,8 @@ export default function ReviewCard({ displayedReviews }) {
                   <p>by: {owner}</p>
                   <p>{snippet}...</p>
                   <p>
-                    {votes} Votes | {comment_count} Comments
+                    {votes} {votes <= 1 ? "Vote" : "Votes"} | {comment_count}{" "}
+                    {comment_count <= 1 ? "Comment" : "Comments"}
                   </p>
                 </div>
               );
