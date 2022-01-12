@@ -13,7 +13,7 @@ export const fetchTopReviews = () => {
 
 export const fetchCategories = () => {
   return myApi.get("/categories").then(({ data }) => {
-    return data.categories.map((category) => category.slug);
+    return data.categories.map((category) => category.slug).sort();
   });
 };
 

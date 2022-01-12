@@ -18,7 +18,7 @@ export default function SearchBox() {
       setIsLoading(false);
     });
   }, []);
-
+  console.log(query);
   const handleCategory = (event) => {
     const category = event.target.value;
     setQuery((currentQuery) => {
@@ -28,9 +28,15 @@ export default function SearchBox() {
 
   const handleTitle = (event) => {
     const title = event.target.value;
-    setQuery((currentQuery) => {
-      return { ...currentQuery, title: title };
-    });
+    if (title === "") {
+      setQuery((currentQuery) => {
+        return { ...currentQuery, title: "all-reviews" };
+      });
+    } else {
+      setQuery((currentQuery) => {
+        return { ...currentQuery, title: title };
+      });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -46,7 +52,7 @@ export default function SearchBox() {
       ) : (
         <form onSubmit={handleSubmit}>
           <select name="categories" onChange={handleCategory}>
-            <option value="All" defaultValue>
+            <option value="all-categories" defaultValue>
               All
             </option>
             {categories.map((category) => {
