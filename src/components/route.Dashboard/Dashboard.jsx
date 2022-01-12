@@ -20,6 +20,7 @@ export default function Dashboard() {
       <Header />
       <h2>Hello, {currentUser.name}!</h2>
       <h3>Account</h3>
+      <h3>Your Comments</h3>
       <p>This is the dashboard.</p>
       <SearchBox />
     </div>
