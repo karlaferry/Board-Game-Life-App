@@ -1,9 +1,10 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../Header";
 import SearchBox from "../SearchBox";
 import CommentSection from "./CommentSection";
 import { fetchReview, patchVote } from "../../utils/api";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function ReviewPage() {
   const [review, setReview] = useState({});
@@ -12,6 +13,9 @@ export default function ReviewPage() {
   const [displayLikes, setDisplayLikes] = useState({});
   const [newComment, setNewComment] = useState("");
   const { review_id } = useParams();
+  const {
+    currentUser: { username },
+  } = useContext(UserContext);
 
   useEffect(() => {
     setNewComment("");
@@ -26,23 +30,6 @@ export default function ReviewPage() {
       .catch((err) => {
         console.log(err);
       });
-    // return Promise.all([fetchReview(review_id), fetchComments(review_id)])
-    //   .then(([review, comments]) => {
-    //     setIsLoading(false);
-    //     setReview(review);
-    //     setDisplayComments(comments);
-    //     setDisplayLikes(() => {
-    //       const likeObj = {};
-    //       comments.forEach((comment) => {
-    //         likeObj[comment.comment_id] = comment.votes;
-    //       });
-    //       return likeObj;
-    //     });
-    //     setDisplayVotes(review.votes);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }, [review_id]);
 
   const {
@@ -55,10 +42,14 @@ export default function ReviewPage() {
   } = review;
 
   const handleVote = () => {
-    patchVote(id);
-    setDisplayVotes((currVotes) => {
-      return currVotes + 1;
-    });
+    if (username) {
+      patchVote(id);
+      setDisplayVotes((currVotes) => {
+        return currVotes + 1;
+      });
+    } else {
+      alert("Please login to vote for a review.");
+    }
   };
 
   return (
