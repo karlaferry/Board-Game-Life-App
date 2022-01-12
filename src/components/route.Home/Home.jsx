@@ -2,16 +2,17 @@ import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../SearchBox";
 import Header from "../Header";
+import ReviewCard from "../route.ReviewsResults/ReviewCard";
 import { fetchTopReviews } from "../../utils/api";
 
 export default function Home() {
-  const [topReviews, setTopReviews] = useState([]);
+  const [displayedReviews, setDisplayedReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     fetchTopReviews().then((res) => {
       setIsLoading(false);
-      setTopReviews(res);
+      setDisplayedReviews(res);
     });
   }, []);
   return (
@@ -28,11 +29,7 @@ export default function Home() {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
-          {topReviews.map((review) => (
-            <li key={review.review_id}>{review.title}</li>
-          ))}
-        </ul>
+        <ReviewCard displayedReviews={displayedReviews} />
       )}
     </div>
   );
