@@ -48,10 +48,6 @@ export default function SearchBox() {
             ? { sort_by: "votes", order: "desc" }
             : criteria === "votes-l-h"
             ? { sort_by: "votes", order: "asc" }
-            : criteria === "comment-l-h"
-            ? { sort_by: "comment_count", order: "asc" }
-            : criteria === "comment-h-l"
-            ? { sort_by: "comment_count", order: "desc" }
             : criteria === "newest"
             ? { sort_by: "created_at", order: "desc" }
             : criteria === "oldest"
@@ -102,8 +98,6 @@ export default function SearchBox() {
             <option value="oldest">Oldest</option>
             <option value="votes-h-l">Votes: High to Low</option>
             <option value="votes-l-h">Votes: Low to High</option>
-            <option value="comments-h-l">Comments: High to Low</option>
-            <option value="comments-l-h">Comments: Low to High</option>
           </select>
           <button>🔍</button>
         </form>
