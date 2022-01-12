@@ -28,13 +28,17 @@ export const fetchReviews = ({ category, title, criteria }) => {
           });
     });
   } else {
-    return myApi.get("/reviews", { params: criteria }).then(({ data }) => {
-      return title === "all-reviews"
-        ? data.reviews
-        : data.reviews.filter((review) => {
-            return review.title.toLowerCase().includes(title.toLowerCase());
-          });
-    });
+    return myApi
+      .get(
+        `/reviews?category=${category}&sort_by=${criteria.sort_by}&order=${criteria.order}`
+      )
+      .then(({ data }) => {
+        return title === "all-reviews"
+          ? data.reviews
+          : data.reviews.filter((review) => {
+              return review.title.toLowerCase().includes(title.toLowerCase());
+            });
+      });
   }
 };
 

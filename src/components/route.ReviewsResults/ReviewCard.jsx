@@ -19,7 +19,7 @@ export default function ReviewCard({ displayedReviews }) {
             }) => {
               const snippet = review_body.split(" ").slice(0, 20).join(" ");
               return (
-                <div>
+                <div key={review_id}>
                   <img
                     src={review_img_url}
                     alt="board game review"

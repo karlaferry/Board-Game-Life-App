@@ -7,10 +7,13 @@ import { QueryContext } from "../contexts/QueryContext";
 export default function SearchBox() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [newQuery, setNewQuery] = useState({
+    category: "all-categories",
+    title: "all-reviews",
+    criteria: { sort_by: "title", order: "asc" },
+  });
   const { query, setQuery } = useContext(QueryContext);
-
   const navigate = useNavigate();
-
   useEffect(() => {
     setIsLoading(true);
     fetchCategories().then((res) => {
@@ -18,9 +21,11 @@ export default function SearchBox() {
       setIsLoading(false);
     });
   }, []);
+
   const handleCategory = (event) => {
     const category = event.target.value;
-    setQuery((currentQuery) => {
+    console.log(category);
+    setNewQuery((currentQuery) => {
       return { ...currentQuery, category: category };
     });
   };
@@ -28,18 +33,74 @@ export default function SearchBox() {
   const handleTitle = (event) => {
     const title = event.target.value;
     if (title === "") {
-      setQuery((currentQuery) => {
+      setNewQuery((currentQuery) => {
         return { ...currentQuery, title: "all-reviews" };
       });
     } else {
-      setQuery((currentQuery) => {
+      setNewQuery((currentQuery) => {
         return { ...currentQuery, title: title };
+      });
+    }
+  };
+  const handleCriteria = (event) => {
+    const criteria = event.target.value;
+    if (criteria === "title") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "title", order: "asc" },
+        };
+      });
+    }
+    if (criteria === "votes-h-l") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "votes", order: "desc" },
+        };
+      });
+    } else if (criteria === "votes-l-h") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "votes", order: "asc" },
+        };
+      });
+    } else if (criteria === "comments-h-l") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "comment_count", order: "desc" },
+        };
+      });
+    } else if (criteria === "comments-l-h") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "comment_count", order: "asc" },
+        };
+      });
+    } else if (criteria === "newest") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "created_at", order: "desc" },
+        };
+      });
+    } else if (criteria === "oldest") {
+      setNewQuery((currentQuery) => {
+        return {
+          ...currentQuery,
+          criteria: { sort_by: "created_at", order: "asc" },
+        };
       });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(newQuery);
+    setQuery(newQuery);
     navigate(`/reviews/${query.category}/${query.title}`);
   };
 
@@ -63,9 +124,21 @@ export default function SearchBox() {
           </select>
           <input
             type="text"
-            placeholder="Review Title"
+            value={newQuery.title}
             onChange={handleTitle}
+            placeholder="Browse"
           />
+          <select name="criteria" onChange={handleCriteria}>
+            <option value="title" defaultValue>
+              Alphabetical
+            </option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="votes-h-l">Votes: High to Low</option>
+            <option value="votes-l-h">Votes: Low to High</option>
+            <option value="comments-h-l">Comments: High to Low</option>
+            <option value="comments-l-h">Comments: Low to High</option>
+          </select>
           <button>🔍</button>
         </form>
       )}
