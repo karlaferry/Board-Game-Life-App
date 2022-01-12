@@ -20,7 +20,11 @@ export default function ReviewCard({ displayedReviews }) {
               const snippet = review_body.split(" ").slice(0, 20).join(" ");
               return (
                 <div>
-                  <img src={review_img_url} alt="review image" width="50%" />
+                  <img
+                    src={review_img_url}
+                    alt="board game review"
+                    width="50%"
+                  />
                   <h3>
                     <Link to={`/review/${review_id}`}>{title}</Link>
                   </h3>
