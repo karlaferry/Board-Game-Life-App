@@ -1,5 +1,6 @@
 // API REQUESTS HERE
 import axios from "axios";
+import { sortTitle, sortComments, sortVotes } from "./utilFuncs";
 
 const myApi = axios.create({
   baseURL: "https://gamersofthenorth.herokuapp.com/api",
@@ -17,9 +18,9 @@ export const fetchCategories = () => {
   });
 };
 
-export const fetchReviews = (category, title) => {
+export const fetchReviews = ({ category, title, criteria }) => {
   if (category === "all-categories") {
-    return myApi.get("/reviews").then(({ data }) => {
+    return myApi.get("/reviews", { params: criteria }).then(({ data }) => {
       return title === "all-reviews"
         ? data.reviews
         : data.reviews.filter((review) => {
@@ -27,7 +28,7 @@ export const fetchReviews = (category, title) => {
           });
     });
   } else {
-    return myApi.get(`/reviews?category=${category}`).then(({ data }) => {
+    return myApi.get("/reviews", { params: criteria }).then(({ data }) => {
       return title === "all-reviews"
         ? data.reviews
         : data.reviews.filter((review) => {
@@ -40,5 +41,11 @@ export const fetchReviews = (category, title) => {
 export const fetchUser = (username) => {
   return myApi.get(`/users/${username}`).then(({ data }) => {
     return data.user;
+  });
+};
+
+export const fetchReview = (id) => {
+  return myApi.get(`/reviews/${id}`).then(({ data }) => {
+    return data.review;
   });
 };
