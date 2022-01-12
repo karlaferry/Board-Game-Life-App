@@ -8,10 +8,12 @@ export default function LogIn() {
   const [isError, setIsError] = useState(false);
   const { username, setUsername, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
+
   const handleUserInput = (event) => {
     const username = event.target.value;
     setUsername(username);
   };
+
   const handleSignIn = (event) => {
     setIsError(false);
     event.preventDefault();

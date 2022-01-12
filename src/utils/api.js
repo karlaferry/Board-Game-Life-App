@@ -84,3 +84,7 @@ export const patchLikes = (id) => {
 export const deleteComment = (id) => {
   return myApi.delete(`/comments/${id}`);
 };
+
+export const postUser = (username, fullName) => {
+  return myApi.post("/users/", { username, name: fullName });
+};
