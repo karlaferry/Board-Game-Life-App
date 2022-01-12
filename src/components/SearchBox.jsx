@@ -63,7 +63,6 @@ export default function SearchBox() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(newQuery);
     setQuery(newQuery);
     navigate(
       `/reviews/${newQuery.category}/${
