@@ -9,7 +9,7 @@ export default function SearchBox() {
   const [isLoading, setIsLoading] = useState(false);
   const { query, setQuery } = useContext(QueryContext);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -18,7 +18,6 @@ export default function SearchBox() {
       setIsLoading(false);
     });
   }, []);
-  console.log(query);
   const handleCategory = (event) => {
     const category = event.target.value;
     setQuery((currentQuery) => {
