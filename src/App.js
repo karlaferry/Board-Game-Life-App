@@ -30,10 +30,7 @@ function App() {
                   path="/reviews/:category/:title"
                   element={<ReviewsResults />}
                 />
-                <Route
-                  path="/review/:review_id/:category"
-                  element={<ReviewCard />}
-                />
+                <Route path="/review/:review_id" element={<ReviewCard />} />
               </Routes>
             </div>
             <Footer />
