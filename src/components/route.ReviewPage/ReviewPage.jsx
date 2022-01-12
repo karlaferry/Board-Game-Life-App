@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import SearchBox from "../SearchBox";
 import {
@@ -8,6 +8,7 @@ import {
   postComment,
   fetchComments,
   patchLikes,
+  deleteComment,
 } from "../../utils/api";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -17,9 +18,12 @@ export default function ReviewPage() {
   const [displayVotes, setDisplayVotes] = useState(0);
   const [displayComments, setDisplayComments] = useState([]);
   const [displayLikes, setDisplayLikes] = useState({});
+  const [postedComment, setPostedComment] = useState(true);
   const [newComment, setNewComment] = useState("");
   const { review_id } = useParams();
+  const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
+
   useEffect(() => {
     setNewComment("");
     setIsLoading(true);
@@ -40,16 +44,13 @@ export default function ReviewPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [review_id]);
-  console.log(displayLikes);
+  }, [review_id, postedComment]);
+
   const {
     review_id: id,
     title,
     review_body: body,
-    designer,
     review_img_url: img,
-    votes,
-    comment_count: comments,
     owner,
     created_at: date,
   } = review;
@@ -65,6 +66,7 @@ export default function ReviewPage() {
     setDisplayLikes((currLikes) => {
       return { ...currLikes, [commentId]: currLikes[commentId] + 1 };
     });
+    navigate(`/review/${review_id}`);
   };
 
   const handleComment = (event) => {
@@ -74,7 +76,11 @@ export default function ReviewPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postComment(id, newComment, currentUser.username);
+    postComment(id, newComment, currentUser.username).then(() => {
+      setPostedComment((currBool) => {
+        return !currBool;
+      });
+    });
   };
   return (
     <div>
@@ -84,6 +90,7 @@ export default function ReviewPage() {
         <p>Loading...</p>
       ) : (
         <section>
+          {/* --------------- REVIEW BLOCK --------------- */}
           <div>
             <img src={img} alt="board game review" width="100%" />
             <h2>{title}</h2>
@@ -94,11 +101,13 @@ export default function ReviewPage() {
             <h3>Review</h3>
             <p>{body}</p>
           </div>
+
+          {/*---------------  LEAVE A COMMENT BLOCK --------------- */}
           <div>
             <h3>Leave a Comment</h3>
             {!currentUser.username ? (
               <p>
-                Please <Link to="/login">log in</Link> or{" "}
+                Please <Link to="/login">login</Link> or{" "}
                 <Link to="/register">register</Link> to leave a comment.
               </p>
             ) : (
@@ -110,6 +119,8 @@ export default function ReviewPage() {
                 <button>Submit</button>
               </form>
             )}
+
+            {/* --------------- COMMENTS BLOCK --------------- */}
             <div>
               <h3>Comments</h3>
               {displayComments.length > 0 &&
@@ -126,6 +137,15 @@ export default function ReviewPage() {
                           }}
                         >
                           {displayLikes[comment.comment_id]} 👍🏼
+                        </button>
+                      )}
+                      {currentUser.username === comment.author && (
+                        <button
+                          onClick={() => {
+                            deleteComment(comment.comment_id);
+                          }}
+                        >
+                          Delete Comment
                         </button>
                       )}
                     </div>

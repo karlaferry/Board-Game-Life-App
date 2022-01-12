@@ -1,6 +1,7 @@
 import { React, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import Header from "../Header";
+import SearchBox from "../SearchBox";
 
 export default function Dashboard() {
   const {
@@ -12,7 +13,9 @@ export default function Dashboard() {
     <div>
       <Header />
       <h2>Hello, {firstName}!</h2>
+      <h3>Account</h3>
       <p>This is the dashboard.</p>
+      <SearchBox />
     </div>
   );
 }

@@ -59,3 +59,28 @@ export const patchVote = (id) => {
     return res.data;
   });
 };
+
+export const postComment = (id, comment, username) => {
+  return myApi.post(`/reviews/${id}/comments`, {
+    username,
+    body: comment,
+  });
+};
+
+export const fetchComments = (id) => {
+  return myApi
+    .get(`/reviews/${id}/comments?sort_by=created_at&order=desc`)
+    .then(({ data }) => {
+      return data.comments;
+    });
+};
+
+export const patchLikes = (id) => {
+  return myApi.patch(`/comments/${id}`, { inc_votes: 1 }).then((res) => {
+    return res.data;
+  });
+};
+
+export const deleteComment = (id) => {
+  return myApi.delete(`/comments/${id}`);
+};
