@@ -7,6 +7,7 @@ import {
   fetchComments,
   patchVote,
 } from "../../utils/api";
+import { convertDate } from "../../utils/utilFuncs";
 
 export default function CommentSection({
   setNewComment,
@@ -93,7 +94,7 @@ export default function CommentSection({
             return (
               <div key={comment_id}>
                 <h4>{author}</h4>
-                <p>{created_at.substring(0, 10)}</p>
+                <p>{convertDate(created_at)}</p>
                 <p>{body}</p>
                 <button
                   onClick={() => {
