@@ -1,4 +1,4 @@
-import { capitaliseString, getFirstName } from "./utilFuncs";
+import { capitaliseString, getFirstName, convertDate } from "./utilFuncs";
 
 describe("capitaliseString()", () => {
   const input = "push-your-luck";
@@ -24,5 +24,16 @@ describe("getFirstName()", () => {
   });
   it("returns the first word with uppercase first letter in a string", () => {
     expect(actual).toBe("FirstName");
+  });
+});
+
+describe("convertDate()", () => {
+  const input = "2022-01-12T22:29:27.580Z";
+  const actual = convertDate(input);
+  it("returns a string", () => {
+    expect(typeof actual).toBe("string");
+  });
+  it("returns only the year, month, and date of a timestamp string", () => {
+    expect(actual).toBe("January 12, 2022");
   });
 });
