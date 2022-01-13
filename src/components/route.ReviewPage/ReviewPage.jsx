@@ -4,11 +4,12 @@ import Header from "../Header";
 import SearchBox from "../SearchBox";
 import CommentSection from "./CommentSection";
 import { fetchReview, patchVote } from "../../utils/api";
+import { convertDate } from "../../utils/utilFuncs";
 import { UserContext } from "../../contexts/UserContext";
 
 export default function ReviewPage() {
   const [review, setReview] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [displayVotes, setDisplayVotes] = useState(0);
   const [newComment, setNewComment] = useState("");
   const { review_id } = useParams();
@@ -63,7 +64,7 @@ export default function ReviewPage() {
             <img src={img} alt="board game review" width="100%" />
             <h2>{title}</h2>
             <p>
-              by {owner} on {date}
+              by {owner} on {convertDate(date)}
             </p>
             <button onClick={handleVote}>{displayVotes} ⬆️</button>
             <h3>Review</h3>

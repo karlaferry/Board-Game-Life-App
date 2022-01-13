@@ -1,10 +1,11 @@
 import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { getFirstName } from "../utils/utilFuncs";
 
 export default function Header() {
   const {
-    currentUser: { username },
+    currentUser: { username, name },
     setCurrentUser,
     setUsername,
   } = useContext(UserContext);
@@ -21,7 +22,9 @@ export default function Header() {
       {username ? (
         <div>
           <p>
-            <Link to={`/dashboard/${username}`}>Dashboard</Link>
+            <Link to={`/dashboard/${username}`}>
+              Dashboard ({getFirstName(name)})
+            </Link>
           </p>
           <p>
             <Link to="/" onClick={handleLogout}>

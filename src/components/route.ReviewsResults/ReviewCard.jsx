@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { convertDate } from "../../utils/utilFuncs";
+
 export default function ReviewCard({ displayedReviews }) {
   return (
     <div>
@@ -12,6 +14,7 @@ export default function ReviewCard({ displayedReviews }) {
               review_id,
               title,
               owner,
+              created_at: date,
               review_body,
               review_img_url,
               votes,
@@ -28,7 +31,9 @@ export default function ReviewCard({ displayedReviews }) {
                   <h3>
                     <Link to={`/review/${review_id}`}>{title}</Link>
                   </h3>
-                  <p>by: {owner}</p>
+                  <p>
+                    by: {owner} on {convertDate(date)}
+                  </p>
                   <p>{snippet}...</p>
                   <p>
                     {votes} {votes <= 1 ? "Vote" : "Votes"} | {comment_count}{" "}
