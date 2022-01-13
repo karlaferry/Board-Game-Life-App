@@ -10,7 +10,6 @@ export default function ReviewPage() {
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [displayVotes, setDisplayVotes] = useState(0);
-  const [displayLikes, setDisplayLikes] = useState({});
   const [newComment, setNewComment] = useState("");
   const { review_id } = useParams();
   const {
@@ -24,7 +23,6 @@ export default function ReviewPage() {
       .then((review) => {
         setIsLoading(false);
         setReview(review);
-
         setDisplayVotes(review.votes);
       })
       .catch((err) => {
@@ -77,8 +75,6 @@ export default function ReviewPage() {
             setNewComment={setNewComment}
             newComment={newComment}
             review_id={review_id}
-            displayLikes={displayLikes}
-            setDisplayLikes={setDisplayLikes}
           />
         </section>
       )}

@@ -12,10 +12,9 @@ export default function CommentSection({
   setNewComment,
   newComment,
   review_id,
-  displayLikes,
-  setDisplayLikes,
 }) {
   const [displayComments, setDisplayComments] = useState([]);
+  const [displayLikes, setDisplayLikes] = useState({});
   const [posting, setPosting] = useState(false);
   const { currentUser } = useContext(UserContext);
 
