@@ -55,8 +55,8 @@ export const fetchReview = (id) => {
 };
 
 // Patch votes for both comments and reviews
-export const patchVote = (id, type, amount) => {
-  return myApi.patch(`/${type}/${id}`, { inc_votes: amount }).then((res) => {
+export const patchVote = (id, type) => {
+  return myApi.patch(`/${type}/${id}`, { inc_votes: 1 }).then((res) => {
     return res.data;
   });
 };
