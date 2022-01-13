@@ -42,7 +42,7 @@ export default function ReviewPage() {
 
   const handleVote = () => {
     if (username) {
-      patchVote(id);
+      patchVote(id, "reviews", 1);
       setDisplayVotes((currVotes) => {
         return currVotes + 1;
       });

@@ -54,8 +54,9 @@ export const fetchReview = (id) => {
   });
 };
 
-export const patchVote = (id) => {
-  return myApi.patch(`/reviews/${id}`, { inc_votes: 1 }).then((res) => {
+// Patch votes for both comments and reviews
+export const patchVote = (id, type, amount) => {
+  return myApi.patch(`/${type}/${id}`, { inc_votes: amount }).then((res) => {
     return res.data;
   });
 };
@@ -73,12 +74,6 @@ export const fetchComments = (id) => {
     .then(({ data }) => {
       return data.comments;
     });
-};
-
-export const patchLikes = (id) => {
-  return myApi.patch(`/comments/${id}`, { inc_votes: 1 }).then((res) => {
-    return res.data;
-  });
 };
 
 export const deleteComment = (id) => {

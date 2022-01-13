@@ -5,7 +5,7 @@ import {
   postComment,
   deleteComment,
   fetchComments,
-  patchLikes,
+  patchVote,
 } from "../../utils/api";
 
 export default function CommentSection({
@@ -47,7 +47,7 @@ export default function CommentSection({
   };
 
   const handleLike = (commentId) => {
-    patchLikes(commentId);
+    patchVote(commentId, "comments", 1);
     setDisplayLikes((currLikes) => {
       return { ...currLikes, [commentId]: currLikes[commentId] + 1 };
     });
