@@ -23,7 +23,6 @@ export default function Register() {
     event.preventDefault();
     postUser(username, fullName)
       .then((res) => {
-        console.log(res);
         setCurrentUser(res);
       })
       .then(() => {
