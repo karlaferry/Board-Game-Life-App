@@ -6,8 +6,12 @@ export const capitaliseString = (str) => {
 };
 
 export const getFirstName = (str) => {
-  const firstName = str.split(" ")[0];
-  return firstName[0].toUpperCase() + firstName.substring(1);
+  if (str) {
+    const firstName = str.split(" ")[0];
+    return firstName[0].toUpperCase() + firstName.substring(1);
+  } else {
+    return;
+  }
 };
 
 export const convertDate = (str) => {
@@ -32,7 +36,7 @@ export const convertDate = (str) => {
     };
     return `${month[date[1]]} ${date[2]}, ${date[0]}`;
   } else {
-    return null;
+    return;
   }
 };
 
