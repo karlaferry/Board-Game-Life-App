@@ -32,7 +32,7 @@ export default function ReviewCard({ displayedReviews }) {
                     <Link to={`/review/${review_id}`}>{title}</Link>
                   </h3>
                   <p>
-                    by: {owner} on {convertDate(date)}
+                    by {owner} on {convertDate(date)}
                   </p>
                   <p>{snippet}...</p>
                   <p>
