@@ -78,6 +78,7 @@ export default function CommentSection({
             placeholder="Leave a comment"
             onChange={handleComment}
             value={newComment}
+            required
           />
           <button>Submit</button>
         </form>
