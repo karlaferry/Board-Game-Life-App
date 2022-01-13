@@ -14,9 +14,11 @@ export default function ReviewsResults() {
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const { query } = useContext(QueryContext);
   useEffect(() => {
-    fetchReviews(query).then((res) => {
-      setDisplayedReviews(res);
-    });
+    fetchReviews(query)
+      .then((res) => {
+        setDisplayedReviews(res);
+      })
+      .catch(console.log);
   }, [query]);
 
   return (
