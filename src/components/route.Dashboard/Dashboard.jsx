@@ -48,7 +48,9 @@ export default function Dashboard() {
               <div key={comment_id}>
                 <p>{convertDate(created_at)}</p>
                 <p>{body}</p>
-                <p>{votes} Likes</p>
+                <p>
+                  {votes} {votes <= 1 ? "Like" : "Likes"}
+                </p>
               </div>
             );
           })}
