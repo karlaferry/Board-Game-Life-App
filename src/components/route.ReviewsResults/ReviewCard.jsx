@@ -23,7 +23,7 @@ export default function ReviewCard({ displayedReviews }) {
                   <img
                     src={review_img_url}
                     alt="board game review"
-                    width="50%"
+                    width="100%"
                   />
                   <h3>
                     <Link to={`/review/${review_id}`}>{title}</Link>
