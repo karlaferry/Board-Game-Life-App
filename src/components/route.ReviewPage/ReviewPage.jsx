@@ -38,11 +38,12 @@ export default function ReviewPage() {
     review_img_url: img,
     owner,
     created_at: date,
+    votes,
   } = review;
 
   const handleVote = () => {
     if (username) {
-      patchVote(id, "reviews", 1);
+      patchVote(id, "reviews");
       setDisplayVotes((currVotes) => {
         return currVotes + 1;
       });
@@ -66,7 +67,9 @@ export default function ReviewPage() {
             <p>
               by {owner} on {convertDate(date)}
             </p>
-            <button onClick={handleVote}>{displayVotes} ⬆️</button>
+            <button onClick={handleVote} disabled={votes !== displayVotes}>
+              {displayVotes} ⬆️
+            </button>
             <h3>Review</h3>
             <p>{body}</p>
           </div>
