@@ -10,6 +10,7 @@ import Dashboard from "./components/route.Dashboard/Dashboard";
 import About from "./components/route.About/About";
 import ReviewsResults from "./components/route.ReviewsResults/ReviewsResults";
 import ReviewPage from "./components/route.ReviewPage/ReviewPage";
+import ErrorPage from "./components/ErrorPage";
 import { QueryProvider } from "./contexts/QueryContext.js";
 import { UserProvider } from "./contexts/UserContext";
 
@@ -31,6 +32,7 @@ function App() {
                   element={<ReviewsResults />}
                 />
                 <Route path="/review/:review_id" element={<ReviewPage />} />
+                <Route path="/error/:statusCode" element={<ErrorPage />} />
               </Routes>
             </div>
             <Footer />
