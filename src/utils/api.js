@@ -88,3 +88,9 @@ export const deleteComment = (id) => {
 export const postUser = (username, fullName) => {
   return myApi.post("/users/", { username, name: fullName });
 };
+
+export const fetchCommentsByUser = (username) => {
+  return myApi.get(`/comments/user/${username}`).then(({ data }) => {
+    return data.comments;
+  });
+};
