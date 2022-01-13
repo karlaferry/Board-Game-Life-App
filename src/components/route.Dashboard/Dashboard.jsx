@@ -2,15 +2,18 @@ import { React, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { fetchUser, fetchCommentsByUser } from "../../utils/api";
+import { getFirstName, convertDate } from "../../utils/utilFuncs";
 import Header from "../Header";
 import SearchBox from "../SearchBox";
 
 export default function Dashboard() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const {
+    currentUser: { name, avatar_url },
+    setCurrentUser,
+  } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [userComments, setUserComments] = useState([]);
   const { username } = useParams();
-
   useEffect(() => {
     setIsLoading(true);
     return Promise.all([
@@ -26,8 +29,12 @@ export default function Dashboard() {
     <div>
       <Header />
       <SearchBox />
-      <h2>Hello, {currentUser.name}!</h2>
-      <h3>Account</h3>
+      <h2>Hello, {getFirstName(name)}!</h2>
+      <div>
+        <h3>Account</h3>
+        <img src={avatar_url} alt="user avatar" width="50%" />
+        <p>Username: {username}</p>
+      </div>
       <h3>Your Comments</h3>
       {isLoading ? (
         <p>Loading...</p>
@@ -36,9 +43,12 @@ export default function Dashboard() {
       ) : (
         <div>
           {userComments.map((comment) => {
+            const { comment_id, created_at, body, votes } = comment;
             return (
-              <div key={comment.comment_id}>
-                <p>{comment.body}</p>
+              <div key={comment_id}>
+                <p>{convertDate(created_at)}</p>
+                <p>{body}</p>
+                <p>{votes} Likes</p>
               </div>
             );
           })}
