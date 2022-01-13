@@ -25,6 +25,7 @@ export default function Dashboard() {
   return (
     <div>
       <Header />
+      <SearchBox />
       <h2>Hello, {currentUser.name}!</h2>
       <h3>Account</h3>
       <h3>Your Comments</h3>
@@ -44,7 +45,6 @@ export default function Dashboard() {
         </div>
       )}
       <p>This is the dashboard.</p>
-      <SearchBox />
     </div>
   );
 }
