@@ -1,5 +1,6 @@
 // API REQUESTS HERE
 import axios from "axios";
+import { filterTitle } from "./utilFuncs";
 
 const myApi = axios.create({
   baseURL: "https://gamersofthenorth.herokuapp.com/api",
@@ -17,28 +18,20 @@ export const fetchCategories = () => {
   });
 };
 
-export const fetchReviews = ({ category, title, criteria }) => {
-  if (category === "all-categories") {
-    return myApi.get("/reviews", { params: criteria }).then(({ data }) => {
-      return title === "all-reviews"
-        ? data.reviews
-        : data.reviews.filter((review) => {
-            return review.title.toLowerCase().includes(title.toLowerCase());
-          });
+export const fetchReviews = ({
+  category,
+  title,
+  criteria: { sort_by, order },
+}) => {
+  return myApi
+    .get(
+      `/reviews${
+        category === "all-categories" ? "?" : `?category=${category}&`
+      }sort_by=${sort_by}&order=${order}`
+    )
+    .then(({ data: { reviews } }) => {
+      return filterTitle(reviews, title);
     });
-  } else {
-    return myApi
-      .get(
-        `/reviews?category=${category}&sort_by=${criteria.sort_by}&order=${criteria.order}`
-      )
-      .then(({ data }) => {
-        return title === "all-reviews"
-          ? data.reviews
-          : data.reviews.filter((review) => {
-              return review.title.toLowerCase().includes(title.toLowerCase());
-            });
-      });
-  }
 };
 
 export const fetchUser = (username) => {
@@ -48,17 +41,14 @@ export const fetchUser = (username) => {
 };
 
 export const fetchReview = (id) => {
-  return myApi.get(`/reviews/${id}`).then(({ data }) => {
-    data.review.created_at = data.review.created_at.substring(0, 10);
-    return data.review;
+  return myApi.get(`/reviews/${id}`).then(({ data: { review } }) => {
+    return review;
   });
 };
 
 // Patch votes for both comments and reviews
 export const patchVote = (id, type) => {
-  return myApi.patch(`/${type}/${id}`, { inc_votes: 1 }).then((res) => {
-    return res.data;
-  });
+  return myApi.patch(`/${type}/${id}`, { inc_votes: 1 });
 };
 
 export const postComment = (id, comment, username) => {
@@ -71,8 +61,8 @@ export const postComment = (id, comment, username) => {
 export const fetchComments = (id) => {
   return myApi
     .get(`/reviews/${id}/comments?sort_by=created_at&order=desc`)
-    .then(({ data }) => {
-      return data.comments;
+    .then(({ data: { comments } }) => {
+      return comments;
     });
 };
 
@@ -85,7 +75,9 @@ export const postUser = (username, fullName) => {
 };
 
 export const fetchCommentsByUser = (username) => {
-  return myApi.get(`/comments/user/${username}`).then(({ data }) => {
-    return data.comments;
-  });
+  return myApi
+    .get(`/comments/user/${username}`)
+    .then(({ data: { comments } }) => {
+      return comments;
+    });
 };
