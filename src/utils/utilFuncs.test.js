@@ -1,4 +1,9 @@
-import { capitaliseString, getFirstName, convertDate } from "./utilFuncs";
+import {
+  capitaliseString,
+  getFirstName,
+  convertDate,
+  filterTitle,
+} from "./utilFuncs";
 
 describe("capitaliseString()", () => {
   const input = "push-your-luck";
@@ -35,5 +40,22 @@ describe("convertDate()", () => {
   });
   it("returns only the year, month, and date of a timestamp string", () => {
     expect(actual).toBe("January 12, 2022");
+  });
+});
+
+describe("filterTitle()", () => {
+  const array = [{ title: "ab" }, { title: "ac" }, { title: "cd" }];
+  it("returns an a filtered array of reviews that includes the title argument", () => {
+    let title = "a";
+    let actual = filterTitle(array, title);
+    expect(Array.isArray(actual)).toBe(true);
+    expect(actual).toHaveLength(2);
+    title = "b";
+    actual = filterTitle(array, title);
+    expect(actual).toHaveLength(1);
+  });
+  it("returns an empty array if nothing matches", () => {
+    const actual = filterTitle(array, "e");
+    expect(actual).toEqual([]);
   });
 });
