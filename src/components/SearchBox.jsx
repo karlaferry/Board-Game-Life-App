@@ -37,26 +37,10 @@ export default function SearchBox() {
   };
 
   const handleCriteria = (event) => {
-    const criteria = event.target.value;
     setNewQuery((currentQuery) => {
       return {
         ...currentQuery,
-        criteria:
-          criteria === "title"
-            ? { sort_by: "title", order: "asc" }
-            : criteria === "votes-h-l"
-            ? { sort_by: "votes", order: "desc" }
-            : criteria === "votes-l-h"
-            ? { sort_by: "votes", order: "asc" }
-            : criteria === "newest"
-            ? { sort_by: "created_at", order: "desc" }
-            : criteria === "oldest"
-            ? { sort_by: "created_at", order: "asc" }
-            : criteria === "comments-h-l"
-            ? { sort_by: "comment_count", order: "desc" }
-            : criteria === "comments-l-h"
-            ? { sort_by: "comment_count", order: "asc" }
-            : null,
+        criteria: JSON.parse(event.target.value),
       };
     });
   };
@@ -95,15 +79,27 @@ export default function SearchBox() {
             placeholder="Browse Review Titles"
           />
           <select name="criteria" onChange={handleCriteria}>
-            <option value="title" defaultValue>
+            <option value='{ "sort_by": "title", "order": "asc" }' defaultValue>
               By Title
             </option>
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="comments-h-l">Comments: High to Low</option>
-            <option value="comments-l-h">Comments: Low to High</option>
-            <option value="votes-h-l">Votes: High to Low</option>
-            <option value="votes-l-h">Votes: Low to High</option>
+            <option value='{ "sort_by": "created_at", "order": "desc" }'>
+              Newest
+            </option>
+            <option value='{ "sort_by": "created_at", "order": "asc" }'>
+              Oldest
+            </option>
+            <option value='{ "sort_by": "comment_count", "order": "desc" }'>
+              Comments: High to Low
+            </option>
+            <option value='{ "sort_by": "comment_count", "order": "asc" }'>
+              Comments: Low to High
+            </option>
+            <option value='{ "sort_by": "votes", "order": "desc" }'>
+              Votes: High to Low
+            </option>
+            <option value='{ "sort_by": "votes", "order": "asc" }'>
+              Votes: Low to High
+            </option>
           </select>
           <button>🔍</button>
         </form>
