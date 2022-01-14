@@ -1,5 +1,5 @@
 import { React, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { fetchUser, fetchCommentsByUser } from "../../utils/api";
 import { getFirstName, convertDate } from "../../utils/utilFuncs";
@@ -39,10 +39,12 @@ export default function Dashboard() {
       ) : (
         <div>
           {userComments.map((comment) => {
-            const { comment_id, created_at, body, votes } = comment;
+            const { comment_id, review_id, created_at, body, votes } = comment;
             return (
               <div key={comment_id}>
-                <p>{convertDate(created_at)}</p>
+                <Link to={`/review/${review_id}`}>
+                  <p>{convertDate(created_at)}</p>
+                </Link>
                 <p>{body}</p>
                 <p>
                   {votes} {votes <= 1 ? "Like" : "Likes"}
