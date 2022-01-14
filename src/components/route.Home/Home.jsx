@@ -10,14 +10,15 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
-    fetchTopReviews().then((res) => {
-      setIsLoading(false);
-      setDisplayedReviews(res);
-    });
+    fetchTopReviews()
+      .then((res) => {
+        setIsLoading(false);
+        setDisplayedReviews(res);
+      })
+      .catch(console.log);
   }, []);
   return (
     <div>
-      <Header />
       <div>Main Image Here</div>
       <h1>Welcome to BGL!</h1>
       <Link to="/about">

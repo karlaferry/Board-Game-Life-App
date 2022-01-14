@@ -27,7 +27,6 @@ export default function Dashboard() {
   }, [setCurrentUser, username]);
   return (
     <div>
-      <Header />
       <SearchBox />
       <h2>Hello, {getFirstName(name)}!</h2>
       <div>

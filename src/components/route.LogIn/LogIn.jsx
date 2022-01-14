@@ -22,14 +22,13 @@ export default function LogIn() {
         setCurrentUser(res);
         navigate(`/dashboard/${username}`);
       })
-      .catch(() => {
+      .catch((err) => {
         setIsError(true);
       });
   };
 
   return (
     <div>
-      <Header />
       <h2>Login</h2>
       <form onSubmit={handleSignIn}>
         <input
