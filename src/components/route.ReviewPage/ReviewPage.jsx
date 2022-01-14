@@ -1,11 +1,11 @@
 import { React, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../Header";
 import SearchBox from "../SearchBox";
 import CommentSection from "./CommentSection";
 import { fetchReview, patchVote } from "../../utils/api";
 import { convertDate } from "../../utils/utilFuncs";
 import { UserContext } from "../../contexts/UserContext";
+import ErrorComponent from "../ErrorPage";
 
 export default function ReviewPage() {
   const [review, setReview] = useState({});
@@ -16,6 +16,7 @@ export default function ReviewPage() {
   const {
     currentUser: { username },
   } = useContext(UserContext);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setNewComment("");
@@ -27,7 +28,7 @@ export default function ReviewPage() {
         setDisplayVotes(review.votes);
       })
       .catch((err) => {
-        console.log(err);
+        setError([err.response.status, err.response.data.msg]);
       });
   }, [review_id]);
 
@@ -54,9 +55,10 @@ export default function ReviewPage() {
 
   return (
     <div>
-      <Header />
       <SearchBox />
-      {isLoading ? (
+      {error ? (
+        <ErrorComponent err={error} />
+      ) : isLoading ? (
         <p>Loading...</p>
       ) : (
         <section>
