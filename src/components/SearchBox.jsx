@@ -16,10 +16,12 @@ export default function SearchBox() {
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
-    fetchCategories().then((res) => {
-      setCategories(res);
-      setIsLoading(false);
-    });
+    fetchCategories()
+      .then((res) => {
+        setCategories(res);
+        setIsLoading(false);
+      })
+      .catch(console.log);
   }, []);
 
   const handleCategory = (event) => {
