@@ -40,10 +40,10 @@ export const convertDate = (str) => {
   }
 };
 
-export const filterTitle = (reviewsArray, title) => {
-  return title === "all-items"
-    ? reviewsArray
-    : reviewsArray.filter((review) => {
-        return review.title.toLowerCase().includes(title.toLowerCase());
-      });
-};
+// export const filterTitle = (reviewsArray, title) => {
+//   return title === "all-items"
+//     ? reviewsArray
+//     : reviewsArray.filter((review) => {
+//         return review.title.toLowerCase().includes(title.toLowerCase());
+//       });
+// };
