@@ -18,11 +18,8 @@ export const fetchCategories = () => {
   });
 };
 
-export const fetchReviews = ({
-  category,
-  title,
-  criteria: { sort_by, order },
-}) => {
+export const fetchReviews = (category, title, criteria) => {
+  const { sort_by, order } = criteria;
   return myApi
     .get(
       `/reviews${
