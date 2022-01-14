@@ -29,7 +29,8 @@ function App() {
               <Route path="/dashboard/:username" element={<Dashboard />} />
               <Route path="/about" element={<About />} />
               <Route
-                path="/reviews/:category/:title"
+                path="/reviews/:category"
+                // path="/reviews/:category/:title"
                 element={<ReviewsResults />}
               />
               <Route path="/review/:review_id" element={<ReviewPage />} />

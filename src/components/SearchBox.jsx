@@ -9,7 +9,6 @@ export default function SearchBox() {
   const [isLoading, setIsLoading] = useState(false);
   const [newQuery, setNewQuery] = useState({
     category: "all-categories",
-    title: "",
     criteria: { sort_by: "title", order: "asc" },
   });
   const { setQuery } = useContext(QueryContext);
@@ -31,12 +30,12 @@ export default function SearchBox() {
     });
   };
 
-  const handleTitle = (event) => {
-    const title = event.target.value;
-    setNewQuery((currentQuery) => {
-      return { ...currentQuery, title: title === "" ? "all-reviews" : title };
-    });
-  };
+  // const handleTitle = (event) => {
+  //   const title = event.target.value;
+  //   setNewQuery((currentQuery) => {
+  //     return { ...currentQuery, title: title === "" ? "all-items" : title };
+  //   });
+  // };
 
   const handleCriteria = (event) => {
     setNewQuery((currentQuery) => {
@@ -50,11 +49,7 @@ export default function SearchBox() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setQuery(newQuery);
-    navigate(
-      `/reviews/${newQuery.category}/${
-        newQuery.title === "" ? "all-items" : newQuery.title
-      }`
-    );
+    navigate(`/reviews/${newQuery.category}`);
   };
 
   return (
@@ -75,11 +70,11 @@ export default function SearchBox() {
               );
             })}
           </select>
-          <input
+          {/* <input
             type="text"
             onChange={handleTitle}
             placeholder="Browse Review Titles"
-          />
+          /> */}
           <select name="criteria" onChange={handleCriteria}>
             <option value='{ "sort_by": "title", "order": "asc" }' defaultValue>
               By Title
