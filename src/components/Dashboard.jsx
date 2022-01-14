@@ -1,8 +1,8 @@
 import { React, useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
-import { fetchUser, fetchCommentsByUser } from "../../utils/api";
-import { getFirstName, convertDate } from "../../utils/utilFuncs";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
+import { fetchUser, fetchCommentsByUser } from "../utils/api";
+import { getFirstName, convertDate } from "../utils/utilFuncs";
 
 export default function Dashboard() {
   const {
@@ -12,17 +12,19 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [userComments, setUserComments] = useState([]);
   const { username } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
-    setIsLoading(true);
-    return Promise.all([
-      fetchUser(username),
-      fetchCommentsByUser(username),
-    ]).then(([user, userComments]) => {
-      setIsLoading(false);
-      setUserComments(userComments);
-      setCurrentUser(user);
-    });
+    if (name) {
+      setIsLoading(true);
+      fetchCommentsByUser(username).then((userComments) => {
+        setIsLoading(false);
+        setUserComments(userComments);
+      });
+    } else {
+      navigate("/");
+    }
   }, [setCurrentUser, username]);
+
   return (
     <div>
       <h2>Hello, {getFirstName(name)}!</h2>

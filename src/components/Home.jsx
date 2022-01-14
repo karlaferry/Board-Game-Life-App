@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ReviewCard from "../route.ReviewsResults/ReviewCard";
-import { fetchTopReviews } from "../../utils/api";
+import ReviewCard from "./ReviewCard";
+import { fetchTopReviews } from "../utils/api";
 
 export default function Home() {
   const [displayedReviews, setDisplayedReviews] = useState([]);

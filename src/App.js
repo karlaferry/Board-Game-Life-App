@@ -2,16 +2,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Component Imports
-import Header from "./components/Header.jsx";
+import Header from "./components/Header";
 import Footer from "./components/Footer.jsx";
-import Home from "./components/route.Home/Home";
-import LogIn from "./components/route.LogIn/LogIn";
-import Register from "./components/route.Register/Register";
-import Dashboard from "./components/route.Dashboard/Dashboard";
-import About from "./components/route.About/About";
-import ReviewsResults from "./components/route.ReviewsResults/ReviewsResults";
-import ReviewPage from "./components/route.ReviewPage/ReviewPage";
+import Home from "./components/Home";
+import LogIn from "./components/LogIn";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+import About from "./components/About";
+import ReviewsResults from "./components/ReviewsResults";
+import ReviewPage from "./components/ReviewPage";
 import ErrorPage from "./components/ErrorPage";
+
 import { QueryProvider } from "./contexts/QueryContext.js";
 import { UserProvider } from "./contexts/UserContext";
 

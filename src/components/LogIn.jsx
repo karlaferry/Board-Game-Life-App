@@ -1,7 +1,7 @@
 import { React, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
-import { fetchUser } from "../../utils/api";
+import { UserContext } from "../contexts/UserContext";
+import { fetchUser } from "../utils/api";
 
 export default function LogIn() {
   const [isError, setIsError] = useState(false);
@@ -40,9 +40,10 @@ export default function LogIn() {
         <button>Login</button>
       </form>
       {isError && (
-        <p>
-          User does not exist. <Link to="/register">Register instead</Link>.
-        </p>
+        <>
+          <p>User does not exist.</p>
+          <Link to="/register">Register instead.</Link>
+        </>
       )}
     </div>
   );

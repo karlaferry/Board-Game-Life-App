@@ -1,13 +1,13 @@
 import { React, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 import {
   postComment,
   deleteComment,
   fetchComments,
   patchVote,
-} from "../../utils/api";
-import { convertDate } from "../../utils/utilFuncs";
+} from "../utils/api";
+import { convertDate } from "../utils/utilFuncs";
 
 export default function CommentSection({
   setNewComment,

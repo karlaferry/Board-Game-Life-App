@@ -1,7 +1,7 @@
 import { React, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
-import { postUser } from "../../utils/api";
+import { UserContext } from "../contexts/UserContext";
+import { postUser } from "../utils/api";
 
 export default function Register() {
   const [isError, setIsError] = useState(false);

@@ -1,10 +1,10 @@
 import { React, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import CommentSection from "./CommentSection";
-import { fetchReview, patchVote } from "../../utils/api";
-import { convertDate } from "../../utils/utilFuncs";
-import { UserContext } from "../../contexts/UserContext";
-import ErrorComponent from "../ErrorPage";
+import ErrorComponent from "./ErrorComponent";
+import { fetchReview, patchVote } from "../utils/api";
+import { convertDate } from "../utils/utilFuncs";
+import { UserContext } from "../contexts/UserContext";
 
 export default function ReviewPage() {
   const [review, setReview] = useState({});

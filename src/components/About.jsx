@@ -1,9 +1,9 @@
 import React from "react";
-import github from "../../img/github.png";
-import gmail from "../../img/gmail.png";
-import twitter from "../../img/twitter.png";
-import linkedin from "../../img/linkedin.png";
-import source from "../../img/source-code.png";
+import github from "../img/github.png";
+import gmail from "../img/gmail.png";
+import twitter from "../img/twitter.png";
+import linkedin from "../img/linkedin.png";
+import source from "../img/source-code.png";
 export default function About() {
   return (
     <div>

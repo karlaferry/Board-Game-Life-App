@@ -1,10 +1,10 @@
 // Dependency Imports
 import { React, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { QueryContext } from "../../contexts/QueryContext";
-import { fetchReviews } from "../../utils/api";
-import { capitaliseString } from "../../utils/utilFuncs";
-import ErrorComponent from "../ErrorComponent";
+import { QueryContext } from "../contexts/QueryContext";
+import { fetchReviews } from "../utils/api";
+import { capitaliseString } from "../utils/utilFuncs";
+import ErrorComponent from "./ErrorComponent";
 
 // Component Imports
 import ReviewCard from "./ReviewCard";

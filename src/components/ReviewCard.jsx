@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { convertDate } from "../../utils/utilFuncs";
+import { convertDate } from "../utils/utilFuncs";
 
 export default function ReviewCard({ displayedReviews }) {
   return (
