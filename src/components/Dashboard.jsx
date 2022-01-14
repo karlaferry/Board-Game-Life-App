@@ -20,7 +20,6 @@ export default function Dashboard() {
     setIsLoading(true);
     return Promise.all([fetchUser(username), fetchCommentsByUser(username)])
       .then(([user, userComments]) => {
-        console.log(username === user.username);
         setIsLoading(false);
         setUserComments(userComments);
         setCurrentUser(user);

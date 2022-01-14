@@ -17,8 +17,7 @@ export default function LogIn() {
     setIsError(false);
     event.preventDefault();
     fetchUser(username)
-      .then((res) => {
-        setCurrentUser(res);
+      .then((user) => {
         navigate(`/dashboard/${username}`);
       })
       .catch((err) => {
