@@ -31,30 +31,32 @@ export default function Dashboard() {
         <img src={avatar_url} alt="user avatar" width="50%" />
         <p>Username: {username}</p>
       </div>
-      <h3>Your Comments</h3>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : userComments.length <= 0 ? (
-        <p>You haven't posted any comments.</p>
-      ) : (
-        <div>
-          {userComments.map((comment) => {
-            const { comment_id, review_id, created_at, body, votes } = comment;
-            return (
-              <div key={comment_id}>
-                <Link to={`/review/${review_id}`}>
-                  <p>{convertDate(created_at)}</p>
-                </Link>
-                <p>{body}</p>
-                <p>
-                  {votes} {votes <= 1 ? "Like" : "Likes"}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      )}
-      <p>This is the dashboard.</p>
+      <div>
+        <h3>Your Comments</h3>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : userComments.length <= 0 ? (
+          <p>You haven't posted any comments.</p>
+        ) : (
+          <div>
+            {userComments.map((comment) => {
+              const { comment_id, review_id, created_at, body, votes } =
+                comment;
+              return (
+                <div key={comment_id}>
+                  <Link to={`/review/${review_id}`}>
+                    <p>{convertDate(created_at)}</p>
+                  </Link>
+                  <p>{body}</p>
+                  <p>
+                    {votes} {votes <= 1 ? "Like" : "Likes"}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

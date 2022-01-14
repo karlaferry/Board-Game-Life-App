@@ -28,6 +28,9 @@ export default function Header() {
         {username ? (
           <div>
             <p>
+              <p>
+                <Link to="/about">About</Link>
+              </p>
               <Link to={`/dashboard/${username}`}>
                 Dashboard ({getFirstName(name)})
               </Link>
@@ -40,6 +43,9 @@ export default function Header() {
           </div>
         ) : (
           <div>
+            <p>
+              <Link to="/about">About</Link>
+            </p>
             <p>
               <Link to="/login">Login</Link>
             </p>
