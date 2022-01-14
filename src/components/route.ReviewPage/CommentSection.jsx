@@ -17,12 +17,18 @@ export default function CommentSection({
   const [displayComments, setDisplayComments] = useState([]);
   const [displayLikes, setDisplayLikes] = useState({});
   const [posting, setPosting] = useState(false);
+  const [criteria, setCriteria] = useState({
+    sort_by: "created_at",
+    order: "desc",
+  });
+  const [isLoading, setIsLoading] = useState(true);
   const {
     currentUser: { username },
   } = useContext(UserContext);
 
   useEffect(() => {
-    fetchComments(review_id).then((comments) => {
+    fetchComments(review_id, criteria).then((comments) => {
+      setIsLoading(false);
       setDisplayComments(comments);
       setDisplayLikes(() => {
         const likeObj = {};
@@ -32,7 +38,7 @@ export default function CommentSection({
         return likeObj;
       });
     });
-  }, [review_id, setDisplayLikes, posting]);
+  }, [review_id, setDisplayLikes, posting, criteria]);
 
   const handleComment = (event) => {
     const comment = event.target.value;
@@ -64,7 +70,9 @@ export default function CommentSection({
       setNewComment("");
     });
   };
-
+  const handleCriteria = (event) => {
+    setCriteria(JSON.parse(event.target.value));
+  };
   return (
     <div>
       <h3>Leave a Comment</h3>
@@ -88,7 +96,24 @@ export default function CommentSection({
       {/* --------------- COMMENTS BLOCK --------------- */}
       <div>
         <h3>Comments ({displayComments.length})</h3>
-        {displayComments.length > 0 &&
+        <select name="criteria" onChange={handleCriteria}>
+          <option value='{ "sort_by": "created_at", "order": "desc" }'>
+            Newest
+          </option>
+          <option value='{ "sort_by": "created_at", "order": "asc" }'>
+            Oldest
+          </option>
+          <option value='{ "sort_by": "votes", "order": "desc" }'>
+            Likes: High to Low
+          </option>
+          <option value='{ "sort_by": "votes", "order": "asc" }'>
+            Likes: Low to High
+          </option>
+        </select>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          displayComments.length > 0 &&
           displayComments.map((comment) => {
             const { comment_id, author, created_at, body, votes } = comment;
             return (
@@ -117,7 +142,8 @@ export default function CommentSection({
                 )}
               </div>
             );
-          })}
+          })
+        )}
       </div>
     </div>
   );

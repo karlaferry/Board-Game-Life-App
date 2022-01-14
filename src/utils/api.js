@@ -55,9 +55,10 @@ export const postComment = (id, comment, username) => {
   });
 };
 
-export const fetchComments = (id) => {
+export const fetchComments = (id, criteria) => {
+  const { sort_by, order } = criteria;
   return myApi
-    .get(`/reviews/${id}/comments?sort_by=created_at&order=desc`)
+    .get(`/reviews/${id}/comments?sort_by=${sort_by}&order=${order}`)
     .then(({ data: { comments } }) => {
       return comments;
     });
