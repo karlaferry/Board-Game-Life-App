@@ -1,5 +1,4 @@
-import { React, useState, useEffect } from "react";
-import SearchBox from "./SearchBox";
+import { React } from "react";
 
 export default function ErrorComponent({ err }) {
   const [code, message] = err;

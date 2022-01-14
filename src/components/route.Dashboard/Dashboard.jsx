@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { fetchUser, fetchCommentsByUser } from "../../utils/api";
 import { getFirstName, convertDate } from "../../utils/utilFuncs";
-import Header from "../Header";
 import SearchBox from "../SearchBox";
 
 export default function Dashboard() {

@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../SearchBox";
-import Header from "../Header";
 import ReviewCard from "../route.ReviewsResults/ReviewCard";
 import { fetchTopReviews } from "../../utils/api";
 
