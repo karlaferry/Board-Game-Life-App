@@ -89,7 +89,7 @@ export default function CommentSection({
             value={newComment}
             required
           />
-          <button>Submit</button>
+          <button disabled={newComment.length === 0}>Submit</button>
         </form>
       )}
 
