@@ -1,6 +1,5 @@
 import { React, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import SearchBox from "../SearchBox";
 import CommentSection from "./CommentSection";
 import { fetchReview, patchVote } from "../../utils/api";
 import { convertDate } from "../../utils/utilFuncs";
@@ -55,7 +54,6 @@ export default function ReviewPage() {
 
   return (
     <div>
-      <SearchBox />
       {error ? (
         <ErrorComponent err={error} />
       ) : isLoading ? (

@@ -2,6 +2,7 @@ import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { getFirstName } from "../utils/utilFuncs";
+import SearchBox from "./SearchBox";
 
 export default function Header() {
   const {
@@ -18,30 +19,36 @@ export default function Header() {
   };
   return (
     <div>
+      {/* BGL LOGO */}
       <Link to="/">BGL</Link>
-      {username ? (
-        <div>
-          <p>
-            <Link to={`/dashboard/${username}`}>
-              Dashboard ({getFirstName(name)})
-            </Link>
-          </p>
-          <p>
-            <Link to="/" onClick={handleLogout}>
-              Logout
-            </Link>
-          </p>
-        </div>
-      ) : (
-        <div>
-          <p>
-            <Link to="/login">Login</Link>
-          </p>
-          <p>
-            <Link to="/register">Register</Link>
-          </p>
-        </div>
-      )}
+      <div>
+        <SearchBox />
+      </div>
+      <div>
+        {username ? (
+          <div>
+            <p>
+              <Link to={`/dashboard/${username}`}>
+                Dashboard ({getFirstName(name)})
+              </Link>
+            </p>
+            <p>
+              <Link to="/" onClick={handleLogout}>
+                Logout
+              </Link>
+            </p>
+          </div>
+        ) : (
+          <div>
+            <p>
+              <Link to="/login">Login</Link>
+            </p>
+            <p>
+              <Link to="/register">Register</Link>
+            </p>
+          </div>
+        )}
+      </div>
       <h1>Board Game Life</h1>
     </div>
   );

@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SearchBox from "../SearchBox";
 import ReviewCard from "../route.ReviewsResults/ReviewCard";
 import { fetchTopReviews } from "../../utils/api";
 
@@ -23,8 +22,6 @@ export default function Home() {
       <Link to="/about">
         <button>About Us</button>
       </Link>
-      <h2>Search</h2>
-      <SearchBox />
       <h2>Top Voted Reviews</h2>
       {isLoading ? (
         <p>Loading...</p>

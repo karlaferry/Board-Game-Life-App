@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { fetchUser, fetchCommentsByUser } from "../../utils/api";
 import { getFirstName, convertDate } from "../../utils/utilFuncs";
-import SearchBox from "../SearchBox";
 
 export default function Dashboard() {
   const {
@@ -26,7 +25,6 @@ export default function Dashboard() {
   }, [setCurrentUser, username]);
   return (
     <div>
-      <SearchBox />
       <h2>Hello, {getFirstName(name)}!</h2>
       <div>
         <h3>Account</h3>
