@@ -7,7 +7,6 @@ import { capitaliseString } from "../../utils/utilFuncs";
 import ErrorComponent from "../ErrorComponent";
 
 // Component Imports
-import SearchBox from "../SearchBox";
 import ReviewCard from "./ReviewCard";
 
 export default function ReviewsResults() {
@@ -18,6 +17,7 @@ export default function ReviewsResults() {
   const { category, title } = useParams();
   const [error, setError] = useState(null);
   useEffect(() => {
+    setError(null);
     fetchReviews(category, title, criteria)
       .then((res) => {
         setDisplayedReviews(res);
@@ -29,7 +29,6 @@ export default function ReviewsResults() {
 
   return (
     <div>
-      <SearchBox />
       {error ? (
         <ErrorComponent err={error} />
       ) : (
