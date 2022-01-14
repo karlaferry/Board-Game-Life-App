@@ -7,22 +7,25 @@ import { getFirstName, convertDate } from "../utils/utilFuncs";
 export default function Dashboard() {
   const {
     currentUser: { name, avatar_url },
+    currentUser,
     setCurrentUser,
   } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [userComments, setUserComments] = useState([]);
+  const [isError, setIsError] = useState(false);
   const { username } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    if (name) {
-      setIsLoading(true);
-      fetchCommentsByUser(username).then((userComments) => {
+    setIsError(false);
+    setIsLoading(true);
+    return Promise.all([fetchUser(username), fetchCommentsByUser(username)])
+      .then(([user, userComments]) => {
+        console.log(username === user.username);
         setIsLoading(false);
         setUserComments(userComments);
-      });
-    } else {
-      navigate("/");
-    }
+        setCurrentUser(user);
+      })
+      .catch(console.log);
   }, [setCurrentUser, username]);
 
   return (
