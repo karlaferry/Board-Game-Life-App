@@ -18,13 +18,13 @@ export const fetchCategories = () => {
   });
 };
 
-export const fetchReviews = (category, title, criteria) => {
+export const fetchReviews = (category, title, criteria, page) => {
   const { sort_by, order } = criteria;
   return myApi
     .get(
       `/reviews${
         category === "all-categories" ? "?" : `?category=${category}&`
-      }sort_by=${sort_by}&order=${order}`
+      }sort_by=${sort_by}&order=${order}&limit=5&p=${page}`
     )
     .then(({ data: { reviews } }) => {
       return filterTitle(reviews, title);
