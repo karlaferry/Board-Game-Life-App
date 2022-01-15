@@ -9,11 +9,13 @@ export default function Header() {
     currentUser: { username, name },
     setCurrentUser,
     setUsername,
+    setFullName,
   } = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogout = () => {
     alert("You've been logged out.");
     setUsername("");
+    setFullName("");
     setCurrentUser({});
     navigate("/");
   };
@@ -26,33 +28,33 @@ export default function Header() {
       </div>
       <div>
         {username ? (
-          <div>
-            <p>
-              <p>
-                <Link to="/about">About</Link>
-              </p>
+          <ul>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
               <Link to={`/dashboard/${username}`}>
                 Dashboard ({getFirstName(name)})
               </Link>
-            </p>
-            <p>
+            </li>
+            <li>
               <Link to="/" onClick={handleLogout}>
                 Logout
               </Link>
-            </p>
-          </div>
+            </li>
+          </ul>
         ) : (
-          <div>
-            <p>
+          <ul>
+            <li>
               <Link to="/about">About</Link>
-            </p>
-            <p>
+            </li>
+            <li>
               <Link to="/login">Login</Link>
-            </p>
-            <p>
+            </li>
+            <li>
               <Link to="/register">Register</Link>
-            </p>
-          </div>
+            </li>
+          </ul>
         )}
       </div>
       <h1>Board Game Life</h1>
