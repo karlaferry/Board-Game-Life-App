@@ -35,13 +35,22 @@ export default function ReviewsResults() {
     setPage(1);
   }, [query]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleNext = () => {
+    scrollToTop();
     setPage((currPage) => {
       return currPage + 1;
     });
   };
 
   const handlePrevious = () => {
+    scrollToTop();
     setPage((currPage) => {
       return currPage - 1;
     });
