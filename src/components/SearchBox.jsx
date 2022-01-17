@@ -50,10 +50,14 @@ export default function SearchBox() {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <select name="categories" onChange={handleCategory}>
+        <form className="searchbar" onSubmit={handleSubmit}>
+          <select
+            name="categories"
+            onChange={handleCategory}
+            className="searchbar--categories"
+          >
             <option value="all-categories" defaultValue>
-              All
+              All Categories
             </option>
             {categories.map((category) => {
               return (
@@ -63,9 +67,13 @@ export default function SearchBox() {
               );
             })}
           </select>
-          <select name="criteria" onChange={handleCriteria}>
+          <select
+            name="criteria"
+            onChange={handleCriteria}
+            className="searchbar--sort"
+          >
             <option value='{ "sort_by": "title", "order": "asc" }' defaultValue>
-              By Title
+              Sort By Title
             </option>
             <option value='{ "sort_by": "created_at", "order": "desc" }'>
               Newest
@@ -86,7 +94,7 @@ export default function SearchBox() {
               Votes: Low to High
             </option>
           </select>
-          <button>🔍</button>
+          <button className="searchbar--button">🔍</button>
         </form>
       )}
     </div>
