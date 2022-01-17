@@ -8,6 +8,7 @@ export default function Register() {
   const { username, setUsername, fullName, setFullName, setCurrentUser } =
     useContext(UserContext);
   const navigate = useNavigate();
+  console.log(username);
 
   const handleUserInput = (event) => {
     const username = event.target.value;
@@ -22,6 +23,7 @@ export default function Register() {
     event.preventDefault();
     postUser(username, fullName)
       .then((res) => {
+        console.log(res);
         setCurrentUser(res);
       })
       .then(() => {

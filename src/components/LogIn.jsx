@@ -5,7 +5,7 @@ import { fetchUser } from "../utils/api";
 
 export default function LogIn() {
   const [isError, setIsError] = useState(false);
-  const { username, setUsername, setCurrentUser } = useContext(UserContext);
+  const { username, setUsername } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleUserInput = (event) => {
@@ -21,6 +21,7 @@ export default function LogIn() {
         navigate(`/dashboard/${username}`);
       })
       .catch((err) => {
+        setUsername("");
         setIsError(true);
       });
   };

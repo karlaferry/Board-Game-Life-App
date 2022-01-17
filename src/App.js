@@ -1,5 +1,6 @@
 // Dependency Imports
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 // Component Imports
 import Header from "./components/Header";
@@ -29,11 +30,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard/:username" element={<Dashboard />} />
               <Route path="/about" element={<About />} />
-              <Route
-                path="/reviews/:category"
-                // path="/reviews/:category/:title"
-                element={<ReviewsResults />}
-              />
+              <Route path="/reviews/:category" element={<ReviewsResults />} />
               <Route path="/review/:review_id" element={<ReviewPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>

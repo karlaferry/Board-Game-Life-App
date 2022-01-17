@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <div>Main Image Here</div>
+      <div className="--home-main-bg"></div>
       <h1>Welcome to BGL!</h1>
       <Link to="/about">
         <button>About Us</button>
