@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600;900&display=swap");
+
+:root {
+  --main-font: "Barlow", san-serif;
+  --darkest: #000814;
+  --dark-blue: #001d3d;
+  --blue: #003566;
+  --yellow: #ffe97b;
+  --white: #ffffff;
+}
+
+* {
+  font-family: var(--main-font);
+  font-weight: 400;
+}
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: 900;
+}

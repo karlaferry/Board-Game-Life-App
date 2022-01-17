@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { getFirstName } from "../utils/utilFuncs";
 import SearchBox from "./SearchBox";
+import meeple from "../img/meeple.png";
 
 export default function Header() {
   const {
@@ -21,14 +22,18 @@ export default function Header() {
   };
   return (
     <div>
-      {/* BGL LOGO */}
-      <Link to="/">BGL</Link>
-      <div>
-        <SearchBox />
-      </div>
+      <Link to="/">
+        <div className="header">
+          <img className="header--logo" src={meeple} alt="meeple" width="10%" />
+          <h1 className="header--title">Board Game Life</h1>
+        </div>
+      </Link>
       <div>
         {username ? (
-          <ul>
+          <ul className="header--nav">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>
               <Link to="/about">About</Link>
             </li>
@@ -44,7 +49,10 @@ export default function Header() {
             </li>
           </ul>
         ) : (
-          <ul>
+          <ul className="header--nav">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>
               <Link to="/about">About</Link>
             </li>
@@ -56,8 +64,10 @@ export default function Header() {
             </li>
           </ul>
         )}
+        <div>
+          <SearchBox />
+        </div>
       </div>
-      <h1>Board Game Life</h1>
     </div>
   );
 }

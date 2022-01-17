@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { convertDate } from "../utils/utilFuncs";
+import "../App.css";
 
 export default function ReviewCard({ displayedReviews }) {
   return (
@@ -28,9 +29,11 @@ export default function ReviewCard({ displayedReviews }) {
                     alt="board game review"
                     width="100%"
                   />
-                  <h3>
-                    <Link to={`/review/${review_id}`}>{title}</Link>
-                  </h3>
+
+                  <Link to={`/review/${review_id}`}>
+                    <h3>{title}</h3>
+                  </Link>
+
                   <p>
                     by {owner} on {convertDate(date)}
                   </p>
