@@ -30,13 +30,6 @@ export default function SearchBox() {
     });
   };
 
-  // const handleTitle = (event) => {
-  //   const title = event.target.value;
-  //   setNewQuery((currentQuery) => {
-  //     return { ...currentQuery, title: title === "" ? "all-items" : title };
-  //   });
-  // };
-
   const handleCriteria = (event) => {
     setNewQuery((currentQuery) => {
       return {
@@ -70,11 +63,6 @@ export default function SearchBox() {
               );
             })}
           </select>
-          {/* <input
-            type="text"
-            onChange={handleTitle}
-            placeholder="Browse Review Titles"
-          /> */}
           <select name="criteria" onChange={handleCriteria}>
             <option value='{ "sort_by": "title", "order": "asc" }' defaultValue>
               By Title
