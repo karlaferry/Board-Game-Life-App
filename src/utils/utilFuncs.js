@@ -39,11 +39,3 @@ export const convertDate = (str) => {
     return;
   }
 };
-
-// export const filterTitle = (reviewsArray, title) => {
-//   return title === "all-items"
-//     ? reviewsArray
-//     : reviewsArray.filter((review) => {
-//         return review.title.toLowerCase().includes(title.toLowerCase());
-//       });
-// };

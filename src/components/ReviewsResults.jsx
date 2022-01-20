@@ -41,14 +41,12 @@ export default function ReviewsResults() {
       behavior: "smooth",
     });
   };
-
   const handleNext = () => {
     scrollToTop();
     setPage((currPage) => {
       return currPage + 1;
     });
   };
-
   const handlePrevious = () => {
     scrollToTop();
     setPage((currPage) => {
@@ -62,15 +60,19 @@ export default function ReviewsResults() {
         <ErrorComponent err={error} />
       ) : (
         <div>
-          <h2 id="reviews">{capitaliseString(category)}</h2>
-          <ReviewCard displayedReviews={displayedReviews} />
-          <button onClick={handlePrevious} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{page}</p>
-          <button onClick={handleNext} disabled={displayedReviews.length < 5}>
-            Next
-          </button>
+          <h2>{capitaliseString(category)}</h2>
+          <div className="reviews">
+            <ReviewCard displayedReviews={displayedReviews} />
+          </div>
+          <div className="reviews--pagination">
+            <button onClick={handlePrevious} disabled={page === 1}>
+              <span>&#8249;</span>
+            </button>
+            <p>{page}</p>
+            <button onClick={handleNext} disabled={displayedReviews.length < 5}>
+              <span>&#8250;</span>
+            </button>
+          </div>
         </div>
       )}
     </div>

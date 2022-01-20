@@ -23,22 +23,23 @@ export default function ReviewCard({ displayedReviews }) {
             }) => {
               const snippet = review_body.split(" ").slice(0, 20).join(" ");
               return (
-                <div key={review_id}>
-                  <img
-                    src={review_img_url}
-                    alt="board game review"
-                    width="100%"
-                  />
-
+                <div className="reviews--reviewcard" key={review_id}>
                   <Link to={`/review/${review_id}`}>
+                    <img
+                      src={review_img_url}
+                      alt="board game review"
+                      width="100%"
+                    />
                     <h3>{title}</h3>
                   </Link>
-
                   <p>
                     by {owner} on {convertDate(date)}
                   </p>
-                  <p>{snippet}...</p>
                   <p>
+                    {snippet}...{" "}
+                    <Link to={`/review/${review_id}`}>Read More</Link>
+                  </p>
+                  <p className="reviews--stats">
                     {votes} {votes <= 1 ? "Vote" : "Votes"} | {comment_count}{" "}
                     {comment_count <= 1 ? "Comment" : "Comments"}
                   </p>

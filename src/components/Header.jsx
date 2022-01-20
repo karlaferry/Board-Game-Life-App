@@ -24,7 +24,7 @@ export default function Header() {
     <div>
       <Link to="/">
         <div className="header">
-          <img className="header--logo" src={meeple} alt="meeple" width="10%" />
+          <img className="header--logo" src={meeple} alt="meeple" />
           <h1 className="header--title">Board Game Life</h1>
         </div>
       </Link>

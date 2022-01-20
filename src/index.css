@@ -1,3 +1,9 @@
+/* 
+==============
+Globals 
+==============
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600;900&display=swap");
 
 :root {
@@ -5,19 +11,19 @@
   --darkest: #000814;
   --dark-blue: #001d3d;
   --blue: #003566;
+  --light-blue: #0054a3;
   --yellow: #ffe97b;
   --white: #ffffff;
+}
+*,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 * {
   font-family: var(--main-font);
   font-weight: 400;
-}
-
-*,
-body {
-  margin: 0;
-  padding: 0;
 }
 
 h1,
@@ -28,8 +34,10 @@ h3 {
 
 a {
   text-decoration: none;
+  color: var(--light-blue);
 }
 
-a:hover {
+a:hover,
+a:focus {
   font-weight: 900;
 }

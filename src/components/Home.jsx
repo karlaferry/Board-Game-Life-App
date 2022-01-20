@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import { fetchTopReviews } from "../utils/api";
 
@@ -17,16 +16,13 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <div className="--home-main-bg"></div>
-      <h1>Welcome to BGL!</h1>
-      <Link to="/about">
-        <button>About Us</button>
-      </Link>
-      <h2>Top Voted Reviews</h2>
+      <h2 className="header--center">⬆️ Top Voted Reviews</h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ReviewCard displayedReviews={displayedReviews} />
+        <div className="reviews">
+          <ReviewCard displayedReviews={displayedReviews} />
+        </div>
       )}
     </div>
   );
