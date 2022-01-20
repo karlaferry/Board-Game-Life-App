@@ -36,30 +36,36 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          required
-          placeholder="Username"
-          onChange={handleUserInput}
-          value={username}
-        />
-        <input
-          type="text"
-          required
-          placeholder="Full Name"
-          onChange={handleName}
-          value={fullName}
-        />
-        <button>Register</button>
-      </form>
-      {isError && (
-        <p>
-          User already exists. <Link to="/login">Login instead</Link>.
-        </p>
-      )}
+    <div className="login--container">
+      <div className="login">
+        <h2>Register</h2>
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            required
+            placeholder="Username"
+            onChange={handleUserInput}
+            value={username}
+          />
+          <br />
+          <input
+            type="text"
+            required
+            placeholder="Full Name"
+            onChange={handleName}
+            value={fullName}
+          />
+          <br />
+          <button>Register</button>
+        </form>
+        {isError && (
+          <div className="error">
+            <p>
+              User already exists. <Link to="/login">Login instead</Link>.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

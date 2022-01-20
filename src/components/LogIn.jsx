@@ -27,24 +27,27 @@ export default function LogIn() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSignIn}>
-        <input
-          type="text"
-          required
-          placeholder="Username"
-          onChange={handleUserInput}
-          value={username}
-        />
-        <button>Login</button>
-      </form>
-      {isError && (
-        <>
-          <p>User does not exist.</p>
-          <Link to="/register">Register instead.</Link>
-        </>
-      )}
+    <div className="login--container">
+      <div className="login">
+        <h2>Login</h2>
+        <form onSubmit={handleSignIn}>
+          <input
+            type="text"
+            required
+            placeholder="Username"
+            onChange={handleUserInput}
+            value={username}
+          />
+          <br />
+          <button>Login</button>
+        </form>
+        {isError && (
+          <div className="error">
+            <p>User does not exist.</p>
+            <Link to="/register">Register instead.</Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

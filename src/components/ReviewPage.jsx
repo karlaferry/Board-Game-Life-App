@@ -59,27 +59,29 @@ export default function ReviewPage() {
       ) : isLoading ? (
         <p>Loading...</p>
       ) : (
-        <section>
+        <section className="singlereview">
           {/* --------------- REVIEW BLOCK --------------- */}
-          <div>
-            <img src={img} alt="board game review" width="100%" />
+          <div className="singlereview--body">
+            <img src={img} alt="board game review" />
             <h2>{title}</h2>
             <p>
               by {owner} on {convertDate(date)}
             </p>
+            <h3>Review</h3>
+            <p>{body}</p>
             <button onClick={handleVote} disabled={votes !== displayVotes}>
               {displayVotes} ⬆️
             </button>
-            <h3>Review</h3>
-            <p>{body}</p>
           </div>
 
           {/*---------------  COMMENT BLOCK --------------- */}
-          <CommentSection
-            setNewComment={setNewComment}
-            newComment={newComment}
-            review_id={review_id}
-          />
+          <div className="comments">
+            <CommentSection
+              setNewComment={setNewComment}
+              newComment={newComment}
+              review_id={review_id}
+            />
+          </div>
         </section>
       )}
     </div>

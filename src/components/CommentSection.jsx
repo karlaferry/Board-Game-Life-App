@@ -76,40 +76,47 @@ export default function CommentSection({
   return (
     <div>
       <h3>Leave a Comment</h3>
-      {!username ? (
-        <p>
-          Please <Link to="/login">login</Link> or{" "}
-          <Link to="/register">register</Link> to leave a comment.
-        </p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <textarea
-            placeholder="Leave a comment"
-            onChange={handleComment}
-            value={newComment}
-            required
-          />
-          <button disabled={newComment.length === 0}>Submit</button>
-        </form>
-      )}
+      <div className="comments--input">
+        {!username ? (
+          <p>
+            Please <Link to="/login">login</Link> or{" "}
+            <Link to="/register">register</Link> to leave a comment.
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <textarea
+              placeholder="Leave a comment"
+              onChange={handleComment}
+              value={newComment}
+              required
+            />
+            <button disabled={newComment.length === 0}>Submit</button>
+          </form>
+        )}
+      </div>
 
       {/* --------------- COMMENTS BLOCK --------------- */}
       <div>
-        <h3>Comments ({displayComments.length})</h3>
-        <select name="criteria" onChange={handleCriteria}>
-          <option value='{ "sort_by": "created_at", "order": "desc" }'>
-            Newest
-          </option>
-          <option value='{ "sort_by": "created_at", "order": "asc" }'>
-            Oldest
-          </option>
-          <option value='{ "sort_by": "votes", "order": "desc" }'>
-            Likes: High to Low
-          </option>
-          <option value='{ "sort_by": "votes", "order": "asc" }'>
-            Likes: Low to High
-          </option>
-        </select>
+        <div className="comments--header">
+          <h3>
+            {displayComments.length > 1 ? "Comments" : "Comment"} (
+            {displayComments.length})
+          </h3>
+          <select name="criteria" onChange={handleCriteria}>
+            <option value='{ "sort_by": "created_at", "order": "desc" }'>
+              Newest
+            </option>
+            <option value='{ "sort_by": "created_at", "order": "asc" }'>
+              Oldest
+            </option>
+            <option value='{ "sort_by": "votes", "order": "desc" }'>
+              Likes: High to Low
+            </option>
+            <option value='{ "sort_by": "votes", "order": "asc" }'>
+              Likes: Low to High
+            </option>
+          </select>
+        </div>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -117,7 +124,7 @@ export default function CommentSection({
           displayComments.map((comment) => {
             const { comment_id, author, created_at, body, votes } = comment;
             return (
-              <div key={comment_id}>
+              <div key={comment_id} className="comments--card">
                 <h4>{author}</h4>
                 <p>{convertDate(created_at)}</p>
                 <p>{body}</p>
