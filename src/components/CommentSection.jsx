@@ -90,6 +90,7 @@ export default function CommentSection({
               value={newComment}
               required
             />
+            <br />
             <button disabled={newComment.length === 0}>Submit</button>
           </form>
         )}
@@ -144,7 +145,7 @@ export default function CommentSection({
                       return handleDelete(comment_id);
                     }}
                   >
-                    Delete Comment
+                    ❌
                   </button>
                 )}
               </div>

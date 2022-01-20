@@ -179,6 +179,15 @@ h3:hover {
 .comments--card p {
   padding-bottom: 1rem;
   line-height: 1.5;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.comments--input form textarea {
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .login--container {
@@ -240,7 +249,7 @@ footer a {
 }
 /* BREAKPOINT 2: eg. iPad mini */
 @media (min-width: 703px) {
-  .header {
-    background-color: pink;
+  body {
+    padding: 5rem;
   }
 }
